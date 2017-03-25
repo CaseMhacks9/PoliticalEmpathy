@@ -6,6 +6,14 @@ var sio = require('socket.io');
 var io = sio(http);
 
 var port = process.env.PORT || 8080;
+
+//Anna added
+var fs = require("fs");
+var file = "db1.db";
+var exists = fs.existsSync(file);
+// end
+
+
 http.listen(port);
 
 app.use(bodyparser.urlencoded({
@@ -44,5 +52,5 @@ io.on("connection", function(socket){
 
 
 io.on('connection', function(socket){
-  
+
 });
