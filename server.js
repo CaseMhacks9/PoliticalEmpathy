@@ -49,10 +49,10 @@ app.get('/form', function(req, res){
 //Anna added
 db.serialize ( function() { //creating a table and inserting data into it
   if (! exist) {
-    db.run ("CREATE TABLE users (first TEXT, last TEXT, age INTEGER, state TEXT, vote TEXT)")
+    db.run ("CREATE TABLE users (ID TEXT)");
   }
 
-  var data = db.prepare("INSERT INTO users (TEXT, TEXT, INTEGER, TEXT, TEXT) VALUES (?)") //TO-DO
+  var data = db.prepare("INSERT INTO users VALUES (?)") //TO-DO
 
   //Come up with a way to insert data
   var rnd;
@@ -62,7 +62,7 @@ db.serialize ( function() { //creating a table and inserting data into it
   }
 
 data.finalize();
-  db.each("SELECT rowid AS is, thing FROM Stuff", function (err.row){
+  db.each("SELECT rowid AS is, thing FROM Stuff", function (err, row){
     console.lot(row.id + ": " + row.thing);
   });
 });
