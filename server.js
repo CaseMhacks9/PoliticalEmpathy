@@ -2,10 +2,6 @@ var bodyparser = require('body-parser');
 var express = require('express');
 var app = express();
 var http = require('http').createServer(app);
-var sio = require('socket.io');
-var io = sio(http);
-
-var port = process.env.PORT || 8080;
 
 //Anna added
 var fs = require("fs");
@@ -21,31 +17,32 @@ var sqlite3 = require ("sqlite3").verbose();
 var db = new sqlite3.Database(file);
 // end
 
-
+var port = process.env.PORT || 8080; //runs on heroku or localhost:8080
 http.listen(port);
 
-app.use(bodyparser.urlencoded({
+app.use(bodyparser.urlencoded({  //for reading forms
     extended: true
 }));
-
 app.use(bodyparser.json());
 
-app.post("/done", function (req, res) {
+
+app.post("/done", function (req, res) { //process form submission: req.body contains form data
     console.log(req.body)
-    res.sendFile(__dirname + '/index.html');
+    res.sendFile(__dirname + '/index.html'); //sends user back to index upon completion of the form
 });
 
-app.post("/form", function (req, res) {
+app.post("/form", function (req, res) { //when user is sent to form, send them form.html
     res.sendFile(__dirname + '/form.html');
 });
 
 
 
-app.get('/', function(req, res){
+app.get('/', function(req, res){ //when someone connects initially, send the index
 	res.sendFile(__dirname + '/index.html');
 });
 
-app.get('/form', function(req, res){
+//when someone connects to /form, send them form.html
+app.get('/form', function(req, res){ 
   res.sendFile(__dirname + '/form.html');
 });
 
@@ -72,16 +69,3 @@ data.finalize();
 
 db.close();
 //Anna end
-
-io.on("connection", function(socket){
-	console.log("connection");
-	socket.on('disconnect', function(){
-    	console.log('disconnection rip');
-  	});
-});
-
-
-
-io.on('connection', function(socket){
-
-});
