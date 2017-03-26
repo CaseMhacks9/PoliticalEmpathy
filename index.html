@@ -5,8 +5,7 @@
 
     <style type="text/css">
          @import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
-
-        .font1{
+         .font1{
             font-family: 'Roboto Slab', serif;
 
             font-weight: bold;
@@ -22,7 +21,11 @@
 
         html {
             background: #efece8;
-        }
+
+        }    
+        
+        #wrap {min-height: 100%;}
+        
 
         #header {
             font-family: 'Roboto Slab', serif;
@@ -33,6 +36,8 @@
         }
 
         #main {
+            overflow:auto;
+            padding-bottom: 50px;
             width:100%;
             display: table;
             position: relative;
@@ -46,8 +51,9 @@
             background-repeat: no-repeat;
             background-position: center center;
             display: table-cell;
-            padding: 8px;
+            padding: 16px;
             float:center;
+            
         }
 
         #rightSide{
@@ -65,6 +71,7 @@
         #rightPanel{
             font-family: 'Roboto Slab', serif;
             font-size: 12pt;
+            padding:16px;
             text-align: center;
             border-radius: 12px;
             background:white;
@@ -85,6 +92,8 @@
         }
 
         #footer {
+            margin-top: -50px;
+            height: 50px;
             clear:both;
             background:white;
         }
@@ -103,20 +112,20 @@
                 <div id="rightSide">
                     <div id = "rightPanel">
                         <h2>
-                            <span class="font1">An app to bridge the political devide in our country.</span>
+                            <span class="font1">An app to bridge the political divide in our country.</span>
                         </h2>
                         <p>
 
                             <span class="font2">We are currently living in a country that is politically divided. Challenge your beliefs and values by being matched with a person with different ideals. Using our matchmaking algorithm you will receive an email within an hour matching you with a person interested in discussing the topics you are interested in and different political beliefs. Keep it proper and have fun!
 </span>
                         </p>
-                    </div>
 
+                    </div>
+                    <br>
                     <form method="post" action="/form">
                    <button type="submit" value="Get Started" />JOIN!
                         </form>
                 </div>
-
 
             </div>
 

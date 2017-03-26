@@ -1,242 +1,255 @@
 <HTML>
-	<head>
-		<style>
-            @import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
+        <head>
+            <style>
+                @import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
 
-        .font1{
-            font-family: 'Roboto Slab', serif;
-            font-weight: bold;
-        }
+            .font1{
+                font-family: 'Roboto Slab', serif;
+                font-weight: bold;
+            }
 
-        body,div{
-            margin: 0;
-            color: #4b4b4b;
-        }
+            body,div{
+                margin: 0;
+                color: #4b4b4b;
+            }
 
-        html {
-            background: #efece8;
-        }
-
-        #main {
-            width:100%;
-            display: table;
-            position: relative;
-        }
-
-        #header {
-            font-family: 'Roboto Slab', serif;
-            font-weight: bold;
-            font-size: 16pt;
-            text-align: center;
-            background: white;
-        }
-
-        #leftSide{
-            width:25%;
-            display: table-cell;
-            background-image: url("http://i.imgur.com/IPyVtd5.png");
-            background-repeat: no-repeat;
-            background-position: left bottom;
-            background-size: 150px;
-            /*background-attachment: fixed;*/
-        }
-
-        #rightSide{
-            width:25%;
-            display: table-cell;
-            background-image: url("http://i.imgur.com/9Wx5g6h.png");
-            background-repeat: no-repeat;
-            background-position: right bottom;
-            background-size: 150px;
-        }
-
-        #form {
-            display: table-cell;
-            margin:auto;
-            width: 800px;
-            border-radius: 8px;
-            padding: 20px 40px;
-            text-align: left;
-            font-family: 'Helvetica', sans-serif;
-            background: white;
-        }
-
-         button{
-            background-color: #595bbe;
-            color: white;
-            padding: 14px 40px;
-            border-radius: 8px;
-            font-size: 20px;
-            font-weight: bold;
-            border: none;
-            margin: auto;
-        }
-
-        #footer {
-            clear:both;
-            background:white;
-        }
-
-		</style>
-		<title>Political Dialogue</title>
-	</head>
-	<body>
-
-        <div id="header"><h1>Political Dialogue</h1></div>
-
-        <div id="leftSide"></div>
-
-		<div id="form">
-        <h2>
-            <span class="font1">Fill out our survey and be matched within an hour.</span>
-        </h2>
+            #wrap {min-height: 100%;}
 
 
-		<form method="post" action="/done">
-			First name:<br>
-			<input type="text" name="firstname"><br><br>
-			Last name:<br>
-			<input type="text" name="lastname"><br><br>
-			Email:<br>
-			<input type="text" name="email"><br><br>
-			Age:<br>
-			<input type="number" name="age"><br><br><br>
-			State:
-			<select name="state">
-				<option value="AL">Alabama</option>
-				<option value="AK">Alaska</option>
-				<option value="AZ">Arizona</option>
-				<option value="AR">Arkansas</option>
-				<option value="CA">California</option>
-				<option value="CO">Colorado</option>
-				<option value="CT">Connecticut</option>
-				<option value="DE">Delaware</option>
-				<option value="DC">District Of Columbia</option>
-				<option value="FL">Florida</option>
-				<option value="GA">Georgia</option>
-				<option value="HI">Hawaii</option>
-				<option value="ID">Idaho</option>
-				<option value="IL">Illinois</option>
-				<option value="IN">Indiana</option>
-				<option value="IA">Iowa</option>
-				<option value="KS">Kansas</option>
-				<option value="KY">Kentucky</option>
-				<option value="LA">Louisiana</option>
-				<option value="ME">Maine</option>
-				<option value="MD">Maryland</option>
-				<option value="MA">Massachusetts</option>
-				<option value="MI">Michigan</option>
-				<option value="MN">Minnesota</option>
-				<option value="MS">Mississippi</option>
-				<option value="MO">Missouri</option>
-				<option value="MT">Montana</option>
-				<option value="NE">Nebraska</option>
-				<option value="NV">Nevada</option>
-				<option value="NH">New Hampshire</option>
-				<option value="NJ">New Jersey</option>
-				<option value="NM">New Mexico</option>
-				<option value="NY">New York</option>
-				<option value="NC">North Carolina</option>
-				<option value="ND">North Dakota</option>
-				<option value="OH">Ohio</option>
-				<option value="OK">Oklahoma</option>
-				<option value="OR">Oregon</option>
-				<option value="PA">Pennsylvania</option>
-				<option value="RI">Rhode Island</option>
-				<option value="SC">South Carolina</option>
-				<option value="SD">South Dakota</option>
-				<option value="TN">Tennessee</option>
-				<option value="TX">Texas</option>
-				<option value="UT">Utah</option>
-				<option value="VT">Vermont</option>
-				<option value="VA">Virginia</option>
-				<option value="WA">Washington</option>
-				<option value="WV">West Virginia</option>
-				<option value="WI">Wisconsin</option>
-				<option value="WY">Wyoming</option>
-			</select><br><br>
+            html {
+                background: #efece8;
+            }
 
-			Who did you vote for in the 2016 presidential elections?<br>
+            #main {
+                overflow:auto;
+                padding-bottom: 50px;
+                width:100%;
+                display: table;
+                position: relative;
+            }
 
-			<input type="radio" name="vote" value="Clinton"> Hillary Clinton <br>
-			<input type="radio" name="vote" value="Trump"> Donald Trump <br>
-			<input type="radio" name="vote" value="Stien"> Jill Stien <br>
-			<input type="radio" name="vote" value="Jhonson"> Gary Johnson <br>
-			<input type="radio" name="vote" value="McMullen"> Evan McMullen <br>
-			<input type="radio" name="vote" value="other"> Did not vote<br><br>
+            #header {
+                font-family: 'Roboto Slab', serif;
+                font-weight: bold;
+                font-size: 16pt;
+                text-align: center;
+                background: white;
+            }
 
-			<table align="center" width="105%">
-				<tr>
-					<th>Are you interested in discussing the topic?</th>
-					<th></th>
-					<th></th>
-					<th></th>
-				</tr>
-				<tr>
-					<th><input type="checkbox" name="_abortion"></th>
-					<th>Pro life</th>
-					<th><input type="range" name="abortion" min="0" style="width:100%" max="100"></th>
-					<th>Pro choice</th>
-				</tr>
-				<tr>
-					<th><input type="checkbox" name="_govsize"></th>
-					<th>For smaller government</th>
-					<th><input type="range" name="govsize" min="0" style="width:100%" max="100"></th>
-					<th>For larger government</th>
-				</tr>
-				<tr>
-					<th><input type="checkbox" name="_guncontrol"></th>
-					<th>Oppose gun control</th>
-					<th><input type="range" name="guncontrol" min="0" style="width:100%" max="100"></th>
-					<th>Favor gun control</th>
-				</tr>
-				<tr>
-					<th><input type="checkbox" name="_gwarming"></th>
-					<th>Climate change is an issue</th>
-					<th><input type="range" name="gwarming" min="0" style="width:100%" max="100"></th>
-					<th>Climate change is not an issue</th>
-				</tr>
-				<tr>
-					<th><input type="checkbox" name="_minwage"></th>
-					<th>Raise minimum waige</th>
-					<th><input type="range" name="minwage" min="0" style="width:100%" max="100"></th>
-					<th>Oppose raise in minimum waige</th>
-				</tr>
-				<tr>
-					<th><input type="checkbox" name="_borders"></th>
-					<th>Open borders to immigration</th>
-					<th><input type="range" name="borders" min="0" style="width:100%" max="100"></th>
-					<th>Closed borders</th>
-				</tr>
-				<tr>
-					<th><input type="checkbox" name="_lgbt"></th>
-					<th>Supports lgbtq+</th>
-					<th><input type="range" name="lgbt" min="0" style="width:100%" max="100"></th>
-					<th>For traditional family values</th>
-				</tr>
-				<tr>
-					<th><input type="checkbox" name="_edu"></th>
-					<th>Pro-vouchers</th>
-					<th><input type="range" name="edu" min="0" style="width:100%" max="100"></th>
-					<th>Anti-vouchers</th>
-				</tr>
-				<tr>
-					<th><input type="checkbox" name="_admin"></th>
-					<th>Broad tax cuts</th>
-					<th><input type="range" name="admin" min="0" style="width:100%" max="100"></th>
-					<th>Targeted tax cuts</th>
-				</tr>
-			</table>
+            #leftSide{
+                width:25%;
+                display: table-cell;
+                background-image: url("http://i.imgur.com/IPyVtd5.png");
+                background-repeat: no-repeat;
+                background-position: left bottom;
+                background-size: 150px;
+                /*background-attachment: fixed;*/
+            }
 
-			<br>
+            #rightSide{
+                width:25%;
+                display: table-cell;
+                background-image: url("http://i.imgur.com/9Wx5g6h.png");
+                background-repeat: no-repeat;
+                background-position: right bottom;
+                background-size: 150px;
+            }
+
+            #form {
+                display: table-cell;
+                margin:auto;
+                width: 800px;
+                border-radius: 8px;
+                padding: 20px 40px;
+                text-align: left;
+                font-family: 'Helvetica', sans-serif;
+                background: white;
+            }
+
+             button{
+                background-color: #595bbe;
+                color: white;
+                padding: 14px 40px;
+                border-radius: 8px;
+                font-size: 20px;
+                font-weight: bold;
+                border: none;
+                margin: auto;
+            }
+
+            #footer {
+                margin-top: -50px;
+                height: 50px;
+                clear:both;
+                background:white;
+            }
+
+            </style>
+            <title>Political Dialogue</title>
+        </head>
+        <body>
 
 
-			<button type="submit" value="Submit"> Submit
-		</form>
-            </div>
-            <div id="rightSide"></div>
-            <br>
+            <div id="header"><h1>Political Dialogue</h1></div>
 
-        <div id="footer">Footer</div>
-	</body>
-</HTML>
+            <div id="wrap">
+                <div id = "main">
+            <div id="leftSide"></div>
+
+            <div id="form">
+            <h2>
+                <span class="font1">Fill out our survey and be matched within an hour.</span>
+            </h2>
+
+
+            <form method="post" action="/done">
+                First name:<br>
+                <input type="text" name="firstname"><br><br>
+                Last name:<br>
+                <input type="text" name="lastname"><br><br>
+                Email:<br>
+                <input type="text" name="email"><br><br>
+                Age:<br>
+                <input type="number" name="age"><br><br><br>
+                State:
+                <select name="state">
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="AZ">Arizona</option>
+                    <option value="AR">Arkansas</option>
+                    <option value="CA">California</option>
+                    <option value="CO">Colorado</option>
+                    <option value="CT">Connecticut</option>
+                    <option value="DE">Delaware</option>
+                    <option value="DC">District Of Columbia</option>
+                    <option value="FL">Florida</option>
+                    <option value="GA">Georgia</option>
+                    <option value="HI">Hawaii</option>
+                    <option value="ID">Idaho</option>
+                    <option value="IL">Illinois</option>
+                    <option value="IN">Indiana</option>
+                    <option value="IA">Iowa</option>
+                    <option value="KS">Kansas</option>
+                    <option value="KY">Kentucky</option>
+                    <option value="LA">Louisiana</option>
+                    <option value="ME">Maine</option>
+                    <option value="MD">Maryland</option>
+                    <option value="MA">Massachusetts</option>
+                    <option value="MI">Michigan</option>
+                    <option value="MN">Minnesota</option>
+                    <option value="MS">Mississippi</option>
+                    <option value="MO">Missouri</option>
+                    <option value="MT">Montana</option>
+                    <option value="NE">Nebraska</option>
+                    <option value="NV">Nevada</option>
+                    <option value="NH">New Hampshire</option>
+                    <option value="NJ">New Jersey</option>
+                    <option value="NM">New Mexico</option>
+                    <option value="NY">New York</option>
+                    <option value="NC">North Carolina</option>
+                    <option value="ND">North Dakota</option>
+                    <option value="OH">Ohio</option>
+                    <option value="OK">Oklahoma</option>
+                    <option value="OR">Oregon</option>
+                    <option value="PA">Pennsylvania</option>
+                    <option value="RI">Rhode Island</option>
+                    <option value="SC">South Carolina</option>
+                    <option value="SD">South Dakota</option>
+                    <option value="TN">Tennessee</option>
+                    <option value="TX">Texas</option>
+                    <option value="UT">Utah</option>
+                    <option value="VT">Vermont</option>
+                    <option value="VA">Virginia</option>
+                    <option value="WA">Washington</option>
+                    <option value="WV">West Virginia</option>
+                    <option value="WI">Wisconsin</option>
+                    <option value="WY">Wyoming</option>
+                </select><br><br>
+
+                Who did you vote for in the 2016 presidential elections?<br>
+
+                <input type="radio" name="vote" value="Clinton"> Hillary Clinton <br>
+                <input type="radio" name="vote" value="Trump"> Donald Trump <br>
+                <input type="radio" name="vote" value="Stien"> Jill Stien <br>
+                <input type="radio" name="vote" value="Jhonson"> Gary Johnson <br>
+                <input type="radio" name="vote" value="McMullen"> Evan McMullen <br>
+                <input type="radio" name="vote" value="other"> Did not vote<br><br>
+
+                <table align="center" width="100%">
+                    <tr>
+                        <th>Are you interested in discussing the topic?</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <th><input type="checkbox" name="_abortion"></th>
+                        <th>Pro life</th>
+                        <th><input type="range" name="abortion" min="0" style="width:100%" max="100"></th>
+                        <th>Pro choice</th>
+                    </tr>
+                    <tr>
+                        <th><input type="checkbox" name="_govsize"></th>
+                        <th>For smaller government</th>
+                        <th><input type="range" name="govsize" min="0" style="width:100%" max="100"></th>
+                        <th>For larger government</th>
+                    </tr>
+                    <tr>
+                        <th><input type="checkbox" name="_guncontrol"></th>
+                        <th>Oppose gun control</th>
+                        <th><input type="range" name="guncontrol" min="0" style="width:100%" max="100"></th>
+                        <th>Favor gun control</th>
+                    </tr>
+                    <tr>
+                        <th><input type="checkbox" name="_gwarming"></th>
+                        <th>Climate change is an issue</th>
+                        <th><input type="range" name="gwarming" min="0" style="width:100%" max="100"></th>
+                        <th>Climate change is not an issue</th>
+                    </tr>
+                    <tr>
+                        <th><input type="checkbox" name="_minwage"></th>
+                        <th>Raise minimum waige</th>
+                        <th><input type="range" name="minwage" min="0" style="width:100%" max="100"></th>
+                        <th>Oppose raise in minimum waige</th>
+                    </tr>
+                    <tr>
+                        <th><input type="checkbox" name="_borders"></th>
+                        <th>borders and immigration</th>
+                        <th><input type="range" name="borders" min="0" style="width:100%" max="100"></th>
+                        <th>MAX</th>
+                    </tr>
+                    <tr>
+                        <th><input type="checkbox" name="_lgbt"></th>
+                        <th>lgbt+</th>
+                        <th><input type="range" name="lgbt" min="0" style="width:100%" max="100"></th>
+                        <th>MAX</th>
+                    </tr>
+                    <tr>
+                        <th><input type="checkbox" name="_edu"></th>
+                        <th>education</th>
+                        <th><input type="range" name="edu" min="0" style="width:100%" max="100"></th>
+                        <th>MAX</th>
+                    </tr>
+                    <tr>
+                        <th><input type="checkbox" name="_admin"></th>
+                        <th>admin</th>
+                        <th><input type="range" name="admin" min="0" style="width:100%" max="100"></th>
+                        <th>MAX</th>
+                    </tr>
+                </table>
+
+                <br>
+
+
+                <button type="submit" value="Submit"> Submit
+            </form>
+                </div>
+                <div id="rightSide"></div>
+                <br>
+
+                </div>
+                    </div>
+                <br><br>
+            <div id="footer">Footer</div>
+        </body>
+    </HTML>
