@@ -98,8 +98,8 @@ var pair = function(people){
         db.run ("UPDATE user_info SET paired = " + people[i].id + " WHERE id = " + people[a].id + ";");
         db.run ("UPDATE user_info SET paired = " + people[a].id + " WHERE id = " + people[i].id + ";");
         console.log("### "+people[i].first+" paired with "+people[a].first+".");
-        sendpaired(people[a].email, people[i].first);
-        sendpaired(people[i].email, people[a].first);
+        sendpaired(people[a].email, people[i].first, people[i].email);
+        sendpaired(people[i].email, people[a].first, people[a].email);
         people.splice(a,1);
       }
     }
@@ -158,7 +158,7 @@ sendconfirm = function(addr){
 /**
 * Sending paired email
 */
-sendpaired = function(addr, pair){
+sendpaired = function(addr, pair, pemail){
   let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -173,7 +173,7 @@ sendpaired = function(addr, pair){
     to: addr, // list of receivers
     subject: 'We have paired you ✔', // Subject line
     text: 'Registration for Political Dialogue confirmed.', // plain text body
-    html: '<b>You have been paired with </b>' // html body
+    html: '<b>You have been paired with '+ pair +', '+pemail+'</b>' // html body
   };
 
   // send mail with defined transport object
