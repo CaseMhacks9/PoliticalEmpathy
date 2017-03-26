@@ -65,6 +65,10 @@ app.post("/done", function (req, res) { //process form submission: req.body cont
     res.sendFile(__dirname + '/index.html'); //sends user back to index upon completion of the form
 });
 
+
+/**
+* Matching algorithm
+*/
 var match = function(sub1, sub2){
   var value = (sub1.cabort+sub2.cabort)*Math.abs(sub1.abort-sub2.abort)+
         (sub1.cgov+sub2.cgov)*Math.abs(sub1.gov-sub2.gov)+
@@ -75,16 +79,23 @@ var match = function(sub1, sub2){
         (sub1.clgbt+sub2.clgbt)*Math.abs(sub1.lgbt-sub2.lgbt)+
         (sub1.cedu+sub2.cedu)*Math.abs(sub1.edu-sub2.edu)+
         (sub1.cadmin+sub2.cadmin)*Math.abs(sub1.admin-sub2.admin);
-  value = value/9;
-  if(value>55){
-    ////////////////pair sub1.id and sub2.id
-  }
+  return value/9;
+
 };
 
+//Pairing function
 var pair = function(people){
   for(var i=0; i < people.length-1; i++){
     for(var a=i+1; a < people.length; a++){
-      match(people[i], people[a]);
+      var val = match(people[i], people[a]);
+
+      if(val>55){
+        db.run ("UPDATE user_info SET paired = " + people[i].id + " WHERE ID = " + people[a].id + ";");
+        db.run ("UPDATE user_info SET paired = " + people[a].id + " WHERE ID = " + people[i].id + ";");
+        console.log("### "+people[i].first+" paired with "+people[a]".")
+        people.splice(a,1);
+      }
+
     }
   }
 };
