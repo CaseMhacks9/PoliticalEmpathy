@@ -16,7 +16,7 @@ var nodemailer = require('nodemailer');
 http.listen(port);
 
 app.use(bodyparser.urlencoded({  //for reading forms
-    extended: true
+  extended: true
 }));
 app.use(bodyparser.json());
 
@@ -58,13 +58,16 @@ app.post("/done", function (req, res) { //process form submission: req.body cont
       var stmt = db.prepare("INSERT INTO user_info (first, last, email, age, state, candidate, cabort, abort, cgov, gov, cgun, gun, cwarm, warm, cwage, wage, cbord, bord, clgbt, lgbt, cedu, edu, cadmin, admin, paired) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0)");
       stmt.run([first, last, email, age, state, candidate, cabort, abort, cgov, gov, cgun, gun, cwarm, warm, cwage, wage, cbord, bord, clgbt, lgbt, cedu, edu, cadmin, admin, paired]);
       stmt.finalize();
+
+      sendconfirm(email);
+
       db.all("SELECT * FROM user_info WHERE paired = 0", function (err, row){
         var people = row;
         pair(people);
       });
     });
     res.sendFile(__dirname + '/index.html'); //sends user back to index upon completion of the form
-});
+  });
 
 
 /**
@@ -73,14 +76,14 @@ app.post("/done", function (req, res) { //process form submission: req.body cont
 var match = function(sub1, sub2){
 
   var value = ((sub1.cabort=='on' | 0)+(sub2.cabort=='on' | 0))*Math.abs(sub1.abort-sub2.abort)+
-        ((sub1.cgov=='on' | 0)+(sub2.cgov =='on'| 0))*Math.abs(sub1.gov-sub2.gov)+
-        ((sub1.cgun=='on' | 0)+(sub2.cgun =='on'| 0))*Math.abs(sub1.gun-sub2.gun)+
-        ((sub1.cwarm =='on'|0)+(sub2.cwarm =='on'| 0))*Math.abs(sub1.warm-sub2.warm)+
-        ((sub1.cwage =='on'|0)+(sub2.cwage =='on'| 0))*Math.abs(sub1.wage-sub2.wage)+
-        ((sub1.cbord =='on'|0)+(sub2.cbord=='on' | 0))*Math.abs(sub1.bord-sub2.bord)+
-        ((sub1.clgbt =='on'|0)+(sub2.clgbt =='on'| 0))*Math.abs(sub1.lgbt-sub2.lgbt)+
-        ((sub1.cedu =='on'|0)+(sub2.cedu =='on'| 0))*Math.abs(sub1.edu-sub2.edu)+
-        ((sub1.cadmin =='on'|0)+(sub2.cadmin =='on'| 0))*Math.abs(sub1.admin-sub2.admin);
+  ((sub1.cgov=='on' | 0)+(sub2.cgov =='on'| 0))*Math.abs(sub1.gov-sub2.gov)+
+  ((sub1.cgun=='on' | 0)+(sub2.cgun =='on'| 0))*Math.abs(sub1.gun-sub2.gun)+
+  ((sub1.cwarm =='on'|0)+(sub2.cwarm =='on'| 0))*Math.abs(sub1.warm-sub2.warm)+
+  ((sub1.cwage =='on'|0)+(sub2.cwage =='on'| 0))*Math.abs(sub1.wage-sub2.wage)+
+  ((sub1.cbord =='on'|0)+(sub2.cbord=='on' | 0))*Math.abs(sub1.bord-sub2.bord)+
+  ((sub1.clgbt =='on'|0)+(sub2.clgbt =='on'| 0))*Math.abs(sub1.lgbt-sub2.lgbt)+
+  ((sub1.cedu =='on'|0)+(sub2.cedu =='on'| 0))*Math.abs(sub1.edu-sub2.edu)+
+  ((sub1.cadmin =='on'|0)+(sub2.cadmin =='on'| 0))*Math.abs(sub1.admin-sub2.admin);
   return value/9;
 
 };
@@ -105,11 +108,11 @@ var pair = function(people){
 
 // TODO: check if this is even needed
 app.post("/form", function (req, res) { //when user is sent to form, send them form.html
-    res.sendFile(__dirname + '/form.html');
-    db.all("SELECT * FROM user_info WHERE paired = 0", function (err, row){
-        var people = row;
-        console.log(row);
-      });
+  res.sendFile(__dirname + '/form.html');
+  db.all("SELECT * FROM user_info WHERE paired = 0", function (err, row){
+    var people = row;
+    console.log(row);
+  });
 });
 
 app.get('/', function(req, res){ //when someone connects initially, send the index
@@ -124,38 +127,31 @@ app.get('/form', function(req, res){
 /**
 * Sending the email
 */
-/*
-var router = express.Router();
-app.use('/sayHello', router);
-router.post('/', handleSayHello); // handle the route at yourdomain.com/sayHello
+sendconfirm = function(addr){
+  let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'polidialogue@gmail.com',
+      pass: 'sedlackova'
+    }
+  });
 
-function handleSayHello(req, res) {
-    // Not the movie transporter!
-    var transporter = nodemailer.createTransport({
-        service: 'Gmail',
-        auth: {
-            user: 'polidialog@gmail.com', // Your email id
-            pass: 'sedlackova' // Your password
-        }
-    });
-}
+  // setup email data with unicode symbols
+  let mailOptions = {
+    from: '"Political Dialogue" <polidialogue@gmail.com>', // sender address
+    to: addr, // list of receivers
+    subject: 'Registration Confirmed ✔', // Subject line
+    text: 'Registration for Political Dialogue confirmed.', // plain text body
+    html: '<b>Registration for Political Dialogue confirmed.</b>' // html body
+  };
 
-var text = 'Hello world from \n\n' + req.body.name;
+  // send mail with defined transport object
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      return console.log(error);
+    }
+    console.log('Message %s sent: %s', info.messageId, info.response);
+  });
 
-var mailOptions = {
-    from: 'polidialog@gmail.com>', // sender address
-    to: 'receiver@destination.com', // list of receivers
-    subject: 'Hello from Political Dialog', // Subject line
-    text: text //, // plaintext body
-    // html: '<b>Hello world ✔</b>' // You can choose to send an HTML body instead
+
 };
-
-transporter.sendMail(mailOptions, function(error, info){
-    if(error){
-        console.log(error);
-        res.json({yo: 'error'});
-    }else{
-        console.log('Message sent: ' + info.response);
-        res.json({yo: info.response});
-    };
-}); */
