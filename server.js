@@ -53,8 +53,8 @@ app.post("/done", function (req, res) { //process form submission: req.body cont
       var admin = req.param ('admin');
       var paired;
 
-      db.run("CREATE TABLE if not exists user_info (first TEXT, last TEXT, email TEXT, age INTEGER, state TEXT, candidate TEXT, cabort TEXT, abort INTEGER, cgov TEXT, gov INTEGER, cgun TEXT, gun INTEGER, cwarm TEXT, warm INTEGER, cwage TEXT, wage TEXT, cbord TEXT, bord INTEGER, clgbt TEXT, lgbt INTEGER, cedu TEXT, edu INTEGER, cadmin TEXT, admin INTEGER, paired INTEGER)");
-      var stmt = db.prepare("INSERT INTO user_info VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0)");
+      db.run("CREATE TABLE if not exists user_info (id INTEGER primary key, first TEXT, last TEXT, email TEXT, age INTEGER, state TEXT, candidate TEXT, cabort TEXT, abort INTEGER, cgov TEXT, gov INTEGER, cgun TEXT, gun INTEGER, cwarm TEXT, warm INTEGER, cwage TEXT, wage TEXT, cbord TEXT, bord INTEGER, clgbt TEXT, lgbt INTEGER, cedu TEXT, edu INTEGER, cadmin TEXT, admin INTEGER, paired INTEGER)");
+      var stmt = db.prepare("INSERT INTO user_info (first, last, email, age, state, candidate, cabort, abort, cgov, gov, cgun, gun, cwarm, warm, cwage, wage, cbord, bord, clgbt, lgbt, cedu, edu, cadmin, admin, paired) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0)");
       stmt.run([first, last, email, age, state, candidate, cabort, abort, cgov, gov, cgun, gun, cwarm, warm, cwage, cbord, bord, clgbt, lgbt, cedu, edu, cadmin, admin, paired]);
       stmt.finalize();
       db.each ("SELECT * FROM user_info WHERE paired = 0", function (err, row){
