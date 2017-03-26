@@ -65,6 +65,31 @@ app.post("/done", function (req, res) { //process form submission: req.body cont
     res.sendFile(__dirname + '/index.html'); //sends user back to index upon completion of the form
 });
 
+var match = function(sub1, sub2){
+  var value = (sub1.cabort+sub2.cabort)*Math.abs(sub1.abort-sub2.abort)+
+        (sub1.cgov+sub2.cgov)*Math.abs(sub1.gov-sub2.gov)+
+        (sub1.cgun+sub2.cgun)*Math.abs(sub1.gun-sub2.gun)+
+        (sub1.cwarm+sub2.cwarm)*Math.abs(sub1.warm-sub2.warm)+
+        (sub1.cwage+sub2.cwage)*Math.abs(sub1.wage-sub2.wage)+
+        (sub1.cbord+sub2.cbord)*Math.abs(sub1.bord-sub2.bord)+
+        (sub1.clgbt+sub2.clgbt)*Math.abs(sub1.lgbt-sub2.lgbt)+
+        (sub1.cedu+sub2.cedu)*Math.abs(sub1.edu-sub2.edu)+
+        (sub1.cadmin+sub2.cadmin)*Math.abs(sub1.admin-sub2.admin);
+  value = value/9;
+  if(value>55){
+    ////////////////pair sub1.id and sub2.id
+  }
+};
+
+var pair = function(people){
+  for(var i=0; i < people.length-1; i++){
+    for(var a=i+1; a < people.length; a++){
+      match(people[i], people[a]);
+    }
+  }
+};
+
+
 // TODO: check if this is even needed
 app.post("/form", function (req, res) { //when user is sent to form, send them form.html
     res.sendFile(__dirname + '/form.html');
