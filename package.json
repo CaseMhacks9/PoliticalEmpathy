@@ -12,5 +12,8 @@
     "mhacks"
   ],
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "sqlite3": "^3.1.8"
+  }
 }
