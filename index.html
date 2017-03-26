@@ -1,8 +1,19 @@
 <HTML>
 <head>
+    
     <title>MHacks9: Anna Sux</title>
     
     <style type="text/css">
+         @import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
+        
+        .font1{
+            font-family: 'Roboto Slab', serif;
+
+            font-weight: bold;
+        }
+        .font2{
+            font-family: 'Helvetica', sans-serif;
+        }
         
         body,div{
             margin: 0;
@@ -10,11 +21,13 @@
         }
         
         html {
-            background: #F6ECCD;
+            background: #efece8;
         }    
-
+        
         #header {
-            font-family: "Arial Black", "Arial Bold", Gadget, sans-serif;
+            font-family: 'Roboto Slab', serif;
+            font-weight: bold;
+            font-size: 16pt;
             text-align: center;
             background: white;
         }
@@ -28,7 +41,7 @@
         #leftSide {
             width:50%;
             height: 456px;
-            background-image: url("http://i.imgur.com/jEEuawJ.png");
+            background-image: url("http://i.imgur.com/fpShYen.png");
             background-repeat: no-repeat;
             background-position: center center;
             display: table-cell;
@@ -49,6 +62,8 @@
             
         
         #rightPanel{
+            font-family: 'Roboto Slab', serif;
+            font-size: 12pt;
             text-align: center;
             border-radius: 12px;
             background:white;
@@ -59,7 +74,7 @@
         }
             
          button{
-            background-color: limegreen;
+            background-color: #595bbe;
             color: white;
             padding: 14px 40px;
             border-radius: 8px;
@@ -70,7 +85,7 @@
             
         #footer {
             clear:both;
-            background:#cc9;
+            background:white;
         }
             
         </style>
@@ -86,8 +101,12 @@
 
                 <div id="rightSide">
                     <div id = "rightPanel">
-                        <h2>Find a Hot Soulmate</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing bluh</p>
+                        <h2>
+                            <span class="font1">Find a Hot Soulmate</span> 
+                        </h2>
+                        <p>
+                            <span class="font2">Lorem ipsum dolor sit amet, consectetuer adipiscing bluh</span>
+                        </p>
                     </div>
                     
                     <form method="post" action="/form">
