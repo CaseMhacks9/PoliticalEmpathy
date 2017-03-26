@@ -10,6 +10,7 @@ var port = process.env.PORT || 8080; //runs on heroku or localhost:8080
 var sqlite3 = require('sqlite3').verbose(); //variables for databases
 var db = new sqlite3.Database('mydb.db');
 var check;
+var nodemailer = require('nodemailer');
 
 //listen for port
 http.listen(port);
@@ -120,9 +121,43 @@ app.get('/form', function(req, res){
   res.sendFile(__dirname + '/form.html');
 });
 
-/*
-// HELP
-//query the datase and convert data into an array
-db.each ("SELECT * FROM users_info WHERE paired  = 0", function(err, row){})
-}
+/**
+* Sending the email
 */
+
+
+
+var router = express.Router();
+app.use('/sayHello', router);
+router.post('/', handleSayHello); // handle the route at yourdomain.com/sayHello
+
+function handleSayHello(req, res) {
+    // Not the movie transporter!
+    var transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+            user: 'example@gmail.com', // Your email id
+            pass: 'password' // Your password
+        }
+    });
+}
+
+var text = 'Hello world from \n\n' + req.body.name;
+
+var mailOptions = {
+    from: 'example@gmail.com>', // sender address
+    to: 'receiver@destination.com', // list of receivers
+    subject: 'Email Example', // Subject line
+    text: text //, // plaintext body
+    // html: '<b>Hello world ✔</b>' // You can choose to send an HTML body instead
+};
+
+transporter.sendMail(mailOptions, function(error, info){
+    if(error){
+        console.log(error);
+        res.json({yo: 'error'});
+    }else{
+        console.log('Message sent: ' + info.response);
+        res.json({yo: info.response});
+    };
+});
