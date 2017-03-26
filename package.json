@@ -1,6 +1,9 @@
 {
   "name": "mhacks9",
   "version": "1.0.0",
+  "engines": { "6.9.4"
+
+  },
   "description": "Project for MHacks9",
   "main": "server.js",
   "scripts": {
