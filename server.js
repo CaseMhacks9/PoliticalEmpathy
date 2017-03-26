@@ -124,7 +124,7 @@ app.get('/form', function(req, res){
 /**
 * Sending the email
 */
-
+/*
 var router = express.Router();
 app.use('/sayHello', router);
 router.post('/', handleSayHello); // handle the route at yourdomain.com/sayHello
@@ -158,4 +158,4 @@ transporter.sendMail(mailOptions, function(error, info){
         console.log('Message sent: ' + info.response);
         res.json({yo: info.response});
     };
-});
+}); */
