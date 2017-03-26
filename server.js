@@ -125,8 +125,6 @@ app.get('/form', function(req, res){
 * Sending the email
 */
 
-
-
 var router = express.Router();
 app.use('/sayHello', router);
 router.post('/', handleSayHello); // handle the route at yourdomain.com/sayHello
@@ -136,8 +134,8 @@ function handleSayHello(req, res) {
     var transporter = nodemailer.createTransport({
         service: 'Gmail',
         auth: {
-            user: 'example@gmail.com', // Your email id
-            pass: 'password' // Your password
+            user: 'polidialog@gmail.com', // Your email id
+            pass: 'sedlackova' // Your password
         }
     });
 }
@@ -145,9 +143,9 @@ function handleSayHello(req, res) {
 var text = 'Hello world from \n\n' + req.body.name;
 
 var mailOptions = {
-    from: 'example@gmail.com>', // sender address
+    from: 'polidialog@gmail.com>', // sender address
     to: 'receiver@destination.com', // list of receivers
-    subject: 'Email Example', // Subject line
+    subject: 'Hello from Political Dialog', // Subject line
     text: text //, // plaintext body
     // html: '<b>Hello world ✔</b>' // You can choose to send an HTML body instead
 };
