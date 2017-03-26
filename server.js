@@ -98,9 +98,10 @@ var pair = function(people){
         db.run ("UPDATE user_info SET paired = " + people[i].id + " WHERE id = " + people[a].id + ";");
         db.run ("UPDATE user_info SET paired = " + people[a].id + " WHERE id = " + people[i].id + ";");
         console.log("### "+people[i].first+" paired with "+people[a].first+".");
+        sendpaired(people[a].email, people[i].first);
+        sendpaired(people[i].email, people[a].first);
         people.splice(a,1);
       }
-
     }
   }
 };
@@ -125,7 +126,7 @@ app.get('/form', function(req, res){
 });
 
 /**
-* Sending the email
+* Sending the confirmation email
 */
 sendconfirm = function(addr){
   let transporter = nodemailer.createTransport({
@@ -152,6 +153,34 @@ sendconfirm = function(addr){
     }
     console.log('Message %s sent: %s', info.messageId, info.response);
   });
+};
 
+/**
+* Sending paired email
+*/
+sendpaired = function(addr, pair){
+  let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'polidialogue@gmail.com',
+      pass: 'sedlackova'
+    }
+  });
 
+  // setup email data with unicode symbols
+  let mailOptions = {
+    from: '"Political Dialogue" <polidialogue@gmail.com>', // sender address
+    to: addr, // list of receivers
+    subject: 'We have paired you ✔', // Subject line
+    text: 'Registration for Political Dialogue confirmed.', // plain text body
+    html: '<b>You have been paired with </b>' // html body
+  };
+
+  // send mail with defined transport object
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      return console.log(error);
+    }
+    console.log('Message %s sent: %s', info.messageId, info.response);
+  });
 };
