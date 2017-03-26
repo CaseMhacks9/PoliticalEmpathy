@@ -15,6 +15,9 @@
   "license": "MIT",
   "dependencies": {
     "nodemailer": "^3.1.8",
-    "sqlite3": "^3.1.8"
+    "sqlite3": "^3.1.8",
+    "bodyparser": "latest",
+    "express": "latest",
+    "http": "latest"
   }
 }
