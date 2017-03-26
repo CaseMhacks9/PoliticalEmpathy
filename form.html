@@ -1,23 +1,106 @@
 <HTML>
 	<head>
 		<style>
-			body {background-color: powderblue;}
+            @import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
+        
+        .font1{
+            font-family: 'Roboto Slab', serif;
+            font-weight: bold;
+        }
+        
+        body,div{
+            margin: 0;
+            color: #4b4b4b;
+        }
+            
+        html {
+            background: #efece8;
+        }    
+        
+        #main {
+            width:100%;
+            display: table;
+            position: relative;
+        }
+            
+        #header {
+            font-family: 'Roboto Slab', serif;
+            font-weight: bold;
+            font-size: 16pt;
+            text-align: center;
+            background: white;
+        }
+        
+        #leftSide{
+            width:25%;
+            display: table-cell;
+            background-image: url("http://i.imgur.com/IPyVtd5.png");
+            background-repeat: no-repeat;
+            background-position: left bottom;
+            background-size: 100px;
+            /*background-attachment: fixed;*/
+        }
+            
+        #rightSide{
+            width:25%;
+            display: table-cell;
+            background-image: url("http://i.imgur.com/9Wx5g6h.png");
+            background-repeat: no-repeat;
+            background-position: right bottom;
+            background-size: 100px;
+        }
+            
+        #form {
+            display: table-cell;
+            margin:auto;
+            width: 50%;
+            border-radius: 8px;
+            padding: 20px 40px;
+            text-align: left;
+            font-family: 'Helvetica', sans-serif;
+            background: white;
+        }
+            
+         button{
+            background-color: #595bbe;
+            color: white;
+            padding: 14px 40px;
+            border-radius: 8px;
+            font-size: 20px;
+            font-weight: bold;
+            border: none;
+            margin: auto;
+        }
+        
+        #footer {
+            clear:both;
+            background:white;
+        }
+            
 		</style>
 		<title>Enter ur DAT0</title>
 	</head>
 	<body>
-
-		yoooooooooooo fill out this form boi
-
+        
+        <div id="header"><h1>Politics Wow</h1></div>
+        
+        <div id="leftSide"></div>
+        
+		<div id="form">
+        <h2>
+            <span class="font1">Find your politics pal!</span> 
+        </h2>
+            
+            
 		<form method="post" action="/done">
 			First name:<br>
-			<input type="text" name="firstname"><br>
+			<input type="text" name="firstname"><br><br>
 			Last name:<br>
-			<input type="text" name="lastname"><br>
+			<input type="text" name="lastname"><br><br>
 			Email:<br>
-			<input type="text" name="email"><br>
+			<input type="text" name="email"><br><br>
 			Age:<br>
-			<input type="number" name="age"><br><br>
+			<input type="number" name="age"><br><br><br>
 			State
 			<select name="state">
 				<option value="AL">Alabama</option>
@@ -148,8 +231,13 @@
 
 			<br>
 
-			<input type="submit" value="Submit"> 
+            
+			<button type="submit" value="Submit"> Submit
 		</form>
-
+            </div>
+            <div id="rightSide"></div>
+            <br>
+            
+        <div id="footer">Footer</div>
 	</body>
 </HTML>
